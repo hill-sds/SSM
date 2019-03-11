@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript">
+        function test() {
+            var id = $("#ID").val();
+            //alert("666666");
+
+            $.ajax({
+                url: "select.action",
+                type: "post",
+                data: {"id": id},
+                dataType: "json",
+                success: function (data) {
+                    var json = eval(data);//json为接收的后台返回的数据；
+                    alert(json.id);
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        }
+    </script>
+</head>
+    <body>
+        <input class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:300px" id="ID">
+        <button onclick="test()">查询</button>
+    </body>
+</html>
